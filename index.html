@@ -16,7 +16,7 @@
 <script>document.documentElement.classList.add('js')</script>
 <link rel="preload" href="assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/stage.css?v=de5eb974">
-<link rel="stylesheet" href="css/djelix.css?v=cfede1df">
+<link rel="stylesheet" href="css/djelix.css?v=73b7d187">
 </head>
 <body>
 <canvas id="himmel" aria-hidden="true"></canvas>
@@ -43,6 +43,7 @@
       <rect class="deckel wall__wide" style="--n:0" x="1.45" y="9.70" width="18.88" height="61.65"/><rect class="deckel wall__wide" style="--n:1" x="21.58" y="9.70" width="19.42" height="61.65"/><rect class="deckel wall__wide" style="--n:2" x="42.26" y="9.70" width="18.01" height="61.65"/><rect class="deckel wall__wide" style="--n:3" x="61.53" y="9.70" width="17.84" height="61.65"/><rect class="deckel wall__wide" style="--n:4" x="80.63" y="9.70" width="17.92" height="61.65"/><rect class="deckel wall__tall" style="--n:0" x="3.75" y="8.20" width="29.27" height="28.95"/><rect class="deckel wall__tall" style="--n:1" x="35.62" y="8.20" width="30.13" height="28.95"/><rect class="deckel wall__tall" style="--n:2" x="68.34" y="8.20" width="27.91" height="28.95"/><rect class="deckel wall__tall" style="--n:3" x="3.75" y="37.20" width="44.85" height="29.20"/><rect class="deckel wall__tall" style="--n:4" x="51.20" y="37.20" width="45.05" height="29.20"/>
     </svg>
     <a class="buchstabe wall__wide" href="#sound" data-vorschau="0" tabindex="-1" aria-hidden="true" style="left:1.70%;top:10.00%;width:18.38%;height:61.05%"></a><a class="buchstabe wall__wide" href="#termine" data-vorschau="0.55" tabindex="-1" aria-hidden="true" style="left:21.83%;top:10.00%;width:18.92%;height:61.05%"></a><a class="buchstabe wall__wide" href="#wunsch" data-vorschau="1" tabindex="-1" aria-hidden="true" style="left:42.51%;top:10.00%;width:17.51%;height:61.05%"></a><a class="buchstabe wall__wide" href="#bilder" data-vorschau="2" tabindex="-1" aria-hidden="true" style="left:61.78%;top:10.00%;width:17.34%;height:61.05%"></a><a class="buchstabe wall__wide" href="#buchen" data-vorschau="4" tabindex="-1" aria-hidden="true" style="left:80.88%;top:10.00%;width:17.42%;height:61.05%"></a><a class="buchstabe wall__tall" href="#sound" data-vorschau="0" tabindex="-1" aria-hidden="true" style="left:4.00%;top:8.50%;width:28.77%;height:28.35%"></a><a class="buchstabe wall__tall" href="#termine" data-vorschau="0.55" tabindex="-1" aria-hidden="true" style="left:35.87%;top:8.50%;width:29.63%;height:28.35%"></a><a class="buchstabe wall__tall" href="#wunsch" data-vorschau="1" tabindex="-1" aria-hidden="true" style="left:68.59%;top:8.50%;width:27.41%;height:28.35%"></a><a class="buchstabe wall__tall" href="#bilder" data-vorschau="2" tabindex="-1" aria-hidden="true" style="left:4.00%;top:37.50%;width:44.35%;height:28.60%"></a><a class="buchstabe wall__tall" href="#buchen" data-vorschau="4" tabindex="-1" aria-hidden="true" style="left:51.45%;top:37.50%;width:44.55%;height:28.60%"></a>
+    <div class="hero__vorhang" aria-hidden="true"></div>
     <div class="hero__copy">
       <h1 class="sub">House DJ<br> aus Innsbruck</h1>
       <div class="hero__side">
@@ -58,7 +59,7 @@
 
 <section class="ch ch-n sound" id="sound" data-k="D" data-from="1" data-to="1" data-ink="light" aria-labelledby="h-sound">
   <figure class="sound__platte platte" id="platte" data-reveal>
-    <img class="platte__dreh" id="plattenteller" src="assets/bilder/platte.webp" width="1400" height="1400" loading="lazy" decoding="async" alt="Schwarze Schallplatte, auf dem Etikett eine tanzende Figur vor einer orangen Sonne">
+    <img class="platte__dreh" id="plattenteller" src="assets/bilder/platte.webp?v=2" width="1400" height="1400" loading="lazy" decoding="async" alt="Schwarze Schallplatte mit orangem, gewelltem Etikett">
     <img class="platte__glanz" src="assets/bilder/platte-glanz.webp" width="1000" height="1000" loading="lazy" decoding="async" alt="">
   </figure>
   <div class="sound__text">
@@ -76,16 +77,11 @@
 </section>
 
 <section class="ch sky-1 termine" id="termine" data-k="J" data-from="1" data-to="1.6" data-ink="light" data-open-sky aria-labelledby="h-termine">
-  <div class="termine__grid">
-    <div class="win win--orange termine__kopf" data-win>
-      <div class="win__bar"><span>Nächster Auftritt</span></div>
-      <div class="win__body"><h2 class="head" id="h-termine" data-termin-datum>In Planung</h2><p class="lead" data-termin-ort>Der nächste Auftritt steht hier, sobald er fix ist.</p></div>
-    </div>
-    <ol class="termine__liste" id="termine-liste" hidden></ol>
-    <article class="win win--papier termine__frei" data-win>
-      <h3 class="win__bar">Freie Abende</h3>
-      <div class="win__body"><p>Clubs, Bars, Festivals und private Feiern. Termine für 2027 sind offen.</p><p><a class="btn" href="#buchen">Datum anfragen</a></p></div>
-    </article>
+  <div class="termin" data-reveal>
+    <h2 class="termin__kicker" id="h-termine">Nächster Auftritt</h2>
+    <p class="termin__tag" data-termin-tag hidden></p>
+    <p class="termin__datum is-leer" data-termin-datum>Noch kein Termin</p>
+    <p class="termin__ort" data-termin-ort hidden></p>
   </div>
 </section>
 
@@ -212,6 +208,6 @@ Viele Grüße</textarea></label>
 <script src="js/stage.js?v=e9e37f2a" defer></script>
 <script src="js/config.js?v=76a5c515" defer></script>
 <script src="js/sky.js?v=0a239bd8" defer></script>
-<script src="js/djelix.js?v=e89c69d1" defer></script>
+<script src="js/djelix.js?v=d3808a36" defer></script>
 </body>
 </html>

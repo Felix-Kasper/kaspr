@@ -10,7 +10,6 @@
   --rosa: #FFB4C2;
   --papier: #FAF4F1;
   --tinte: #16090F;
-  --rand: 2px solid #000;
 
   /* Rollen, je Kapitel neu gesetzt */
   --ground: var(--orange);
@@ -117,6 +116,7 @@ html.gl .sky-0, html.gl .sky-1, html.gl .sky-3, html.gl .sky-4 { background: non
 .wall { position: absolute; inset: 0; width: 100%; height: 100%; fill: var(--orange); transform-origin: var(--ox-w) var(--oy-w); }
 .wall__tall { display: none; }
 .buchstabe { position: absolute; z-index: 1; }
+.hero__vorhang { position: absolute; inset: 0; z-index: 2; background: var(--nacht); visibility: hidden; pointer-events: none; }
 .hero__copy { position: absolute; left: var(--m); right: var(--m); top: 73.5%; bottom: var(--m); display: grid; grid-template-columns: 7fr 5fr; gap: var(--gap) 3vw; align-items: start; color: var(--tinte); }
 .hero__side { display: flex; gap: clamp(16px, 2vw, 32px); align-items: flex-start; justify-content: space-between; }
 .hero__side p { max-width: 36ch; font-weight: 500; }
@@ -134,7 +134,7 @@ html.gl .sky-0, html.gl .sky-1, html.gl .sky-3, html.gl .sky-4 { background: non
 .ch-z { --ground: var(--rosa); --ink: var(--tinte); --accent: var(--tinte); --accent-ink: var(--rosa); background: var(--rosa); color: var(--tinte); }
 
 /* Fenster */
-.win { position: relative; display: flex; flex-direction: column; min-width: 0; background: var(--w-bg); color: var(--w-ink); border: var(--rand); }
+.win { position: relative; display: flex; flex-direction: column; min-width: 0; background: var(--w-bg); color: var(--w-ink); }
 .win--papier { --w-bg: var(--papier); --w-ink: var(--tinte); --w-bar: var(--tinte); --w-bar-ink: var(--papier); }
 .win--rosa { --w-bg: var(--rosa); --w-ink: var(--tinte); --w-bar: var(--rot); --w-bar-ink: var(--papier); }
 .win--orange { --w-bg: var(--orange); --w-ink: var(--tinte); --w-bar: var(--tinte); --w-bar-ink: var(--orange); }
@@ -176,7 +176,7 @@ html.gl .sky-0, html.gl .sky-1, html.gl .sky-3, html.gl .sky-4 { background: non
 .platte__glanz { mix-blend-mode: screen; opacity: 0.5; pointer-events: none; }
 .sound__text { display: flex; flex-direction: column; gap: clamp(1.1rem, 2vw, 1.75rem); min-width: 0; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.tags li { border: 1px solid currentColor; padding: 0.15em 0.6em; font-size: var(--step-small); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.tags li { background: color-mix(in srgb, currentColor 14%, transparent); padding: 0.15em 0.6em; font-size: var(--step-small); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
 .sc .win__bar a { color: inherit; }
 .sc__body { display: grid; gap: 0.8rem; }
 .sc__start { display: flex; align-items: center; gap: 1rem; font-weight: 700; font-size: var(--step-lead); text-align: left; }
@@ -187,27 +187,26 @@ html.gl .sky-0, html.gl .sky-1, html.gl .sky-3, html.gl .sky-4 { background: non
 .sc iframe { display: block; width: 100%; height: 420px; border: 0; }
 .sc.is-player .win__body { padding: 0; }
 
-/* Termine */
-.termine { padding: clamp(96px, 14svh, 150px) var(--m) clamp(64px, 12svh, 120px); min-height: 92svh; display: flex; }
-.termine__grid { flex: 1; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); align-content: space-between; }
-.termine__kopf { grid-column: 1 / span 7; align-self: start; }
-.termine__kopf .win__body { display: grid; gap: 0.5rem; padding-block: clamp(1.25rem, 2.4vw, 2.25rem); }
-.termine__liste { grid-column: 1 / span 7; display: grid; gap: var(--gap); }
-.termine__liste li { display: grid; grid-template-columns: auto 1fr; gap: 1rem; padding: 0.8rem 1rem; background: var(--papier); border: var(--rand); color: var(--tinte); font-weight: 600; }
-.termine__liste time { font-variant-numeric: tabular-nums; }
-.termine__frei { grid-column: 8 / -1; align-self: end; }
-.termine__frei .win__body { display: grid; gap: 1rem; justify-items: start; }
+/* Termine: nur der nächste Auftritt, groß */
+.termine { min-height: 100svh; display: grid; align-items: end; padding: clamp(110px, 16svh, 170px) var(--m) clamp(56px, 10svh, 110px); }
+.termin { display: grid; gap: clamp(0.4rem, 1vw, 0.9rem); }
+.termin__kicker { font-size: var(--step-small); font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--orange); }
+.termin__tag { font-size: var(--step-lead); font-weight: 500; text-transform: capitalize; letter-spacing: -0.01em; }
+.termin__datum { font-family: var(--font-display); font-weight: 400; font-size: clamp(5.5rem, 3rem + 17vw, 22rem); line-height: 0.82; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; margin-left: -0.04em; }
+.termin__datum.is-leer { font-size: clamp(3.75rem, 1.5rem + 9vw, 11rem); line-height: 0.9; text-transform: uppercase; color: color-mix(in srgb, var(--papier) 42%, transparent); }
+.termin__ort { font-size: var(--step-lead); font-weight: 600; letter-spacing: -0.01em; }
 
 /* Liedwunsch */
 .wunsch { padding: clamp(96px, 14svh, 150px) var(--m); }
 .wunsch__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 72px); align-items: end; }
 .felder { display: grid; gap: 1.1rem; }
 .feld { display: grid; gap: 0.35rem; font-weight: 600; font-size: var(--step-small); }
-.feld input, .feld textarea { font: 500 var(--step-body)/1.45 var(--font-text); color: var(--tinte); background: #fff; border: var(--rand); border-radius: 0; padding: 0.8rem 0.9rem; width: 100%; min-width: 0; }
+.feld input, .feld textarea { font: 500 var(--step-body)/1.45 var(--font-text); color: var(--tinte); background: #fff; border: 0; border-radius: 0; padding: 0.8rem 0.9rem; width: 100%; min-width: 0; }
 .feld textarea { resize: vertical; }
 .feld input, .feld textarea { caret-color: var(--orange); transition: outline-offset 160ms var(--ease-out, ease-out); }
 .feld input::placeholder, .feld textarea::placeholder { color: color-mix(in srgb, var(--tinte) 58%, #fff); opacity: 1; }
-.feld input:focus, .feld textarea:focus { outline: 3px solid #000; outline-offset: 3px; }
+.feld input:focus, .feld textarea:focus { outline: none; box-shadow: inset 0 -3px 0 var(--tinte); }
+.wunsch .feld input { background: color-mix(in srgb, var(--tinte) 7%, #fff); }
 .senden { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.25rem; }
 .status { font-weight: 600; }
 .status.is-fehler { color: var(--rot); }
@@ -244,9 +243,6 @@ html.gl .sky-0, html.gl .sky-1, html.gl .sky-3, html.gl .sky-4 { background: non
 .buchen__h { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(4.5rem, 2rem + 10vw, 13rem); line-height: 0.88; text-wrap: balance; }
 .buchen__form { display: grid; gap: 1.1rem; }
 .feld--gross input { font-size: var(--step-lead); padding: 1rem; }
-/* Kontaktfelder ohne Rand, beim Tippen nur ein Strich unten */
-.buchen .feld input, .buchen .feld textarea { border: 0; }
-.buchen .feld input:focus, .buchen .feld textarea:focus { outline: none; box-shadow: inset 0 -3px 0 var(--tinte); }
 .buchen .btn--gross { background: var(--tinte); color: var(--orange); }
 @media (hover: hover) and (pointer: fine) { .buchen .btn--gross:hover { background: var(--papier); color: var(--tinte); } }
 /* Fuß */
@@ -285,8 +281,6 @@ html.gl .sky-0, html.gl .sky-1, html.gl .sky-3, html.gl .sky-4 { background: non
   .sound, .wunsch__grid, .buchen { grid-template-columns: minmax(0, 1fr); }
   .sound { row-gap: 2rem; }
   .sound__platte { width: 100%; }
-  .termine__kopf, .termine__liste, .termine__frei { grid-column: 1 / -1; }
-  .termine__grid { align-content: start; gap: 2rem var(--gap); }
 }
 @media (max-width: 700px) {
   .wall__wide, .js .deckel.wall__wide { display: none; }

@@ -105,13 +105,13 @@
   const zeigeTermine = (liste) => {
     const kommend = (liste || []).map((t) => ({ ...t, d: new Date(t.datum + 'T12:00:00') })).filter((t) => !isNaN(t.d) && t.d >= heute).sort((a, b) => a.d - b.d);
     if (!kommend.length) return false;
-    const fmt = (d) => d.toLocaleDateString('de-AT', { weekday: 'short', day: '2-digit', month: '2-digit' }).replace(',', '');
-    const ort = (t) => [t.ort, t.stadt].filter(Boolean).join(', ');
-    $('[data-termin-datum]').textContent = fmt(kommend[0].d);
-    $('[data-termin-ort]').textContent = ort(kommend[0]);
-    const ul = $('#termine-liste'); ul.textContent = '';
-    kommend.slice(1, 6).forEach((t) => { const li = document.createElement('li'); const tm = document.createElement('time'); tm.dateTime = t.datum; tm.textContent = fmt(t.d); const sp = document.createElement('span'); sp.textContent = ort(t); li.append(tm, sp); ul.append(li); });
-    ul.hidden = kommend.length < 2;
+    const t = kommend[0];
+    const tag = $('[data-termin-tag]'), datum = $('[data-termin-datum]'), ort = $('[data-termin-ort]');
+    tag.textContent = t.d.toLocaleDateString('de-AT', { weekday: 'long' }) + (t.d.getFullYear() !== heute.getFullYear() ? ' ' + t.d.getFullYear() : '');
+    datum.textContent = t.d.toLocaleDateString('de-AT', { day: '2-digit', month: '2-digit' });
+    datum.classList.remove('is-leer');
+    ort.textContent = [t.ort, t.stadt].filter(Boolean).join(' · ');
+    tag.hidden = false; ort.hidden = !ort.textContent;
     return true;
   };
   zeigeTermine(CFG.termine);
@@ -209,11 +209,13 @@
   /* Szenen */
   const S = window.Scenes = window.Scenes || {};
   S.hero = (root) => Stage.scene(root, {
-    hold: 0.85, phone: { hold: 0.7 },
+    hold: 0.5, phone: { hold: 0.45 },
     build(tl, { q }) {
-      tl.to(q('.hero__copy')[0], { yPercent: 14, autoAlpha: 0, duration: 0.16 }, 0);
-      tl.to(q('.wall')[0], { scale: 22, ease: 'power2.in', duration: 0.8 }, 0.03);
-      tl.set(q('.wall')[0], { autoAlpha: 0 }, 0.84);
+      tl.to(q('.hero__copy')[0], { yPercent: 14, autoAlpha: 0, duration: 0.12 }, 0);
+      tl.to(q('.wall')[0], { scale: 22, ease: 'power3.in', duration: 0.55 }, 0.02);
+      tl.set(q('.wall')[0], { autoAlpha: 0 }, 0.58);
+      /* der Sonnenuntergang wird vom Blau des nächsten Kapitels weggezogen */
+      tl.fromTo(q('.hero__vorhang')[0], { clipPath: 'inset(100% 0% 0% 0%)', autoAlpha: 1 }, { clipPath: 'inset(0% 0% 0% 0%)', autoAlpha: 1, ease: 'power2.inOut', duration: 0.42 }, 0.56);
     },
   });
   S.strecke = (root) => Stage.scene(root, {
