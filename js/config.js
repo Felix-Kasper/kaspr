@@ -5,7 +5,7 @@ window.DJELIX = {
   // Booking-Anfragen gehen zusätzlich als Mail raus (FormSubmit). Nach der ersten Anfrage kommt eine
   // Bestätigungsmail, danach gibt es eine Zufallsadresse, die hier die Mail ersetzen kann.
   formular: 'https://formsubmit.co/ajax/kasper_news@outlook.com',
-  soundcloud: 'https://soundcloud.com/djelix1',
+  soundcloud: 'https://soundcloud.com/kasprdj',
   // Termine trägst du in JARVIS ein (DJ, Termine). Die Liste hier ist nur der Rückfall, falls JARVIS nicht antwortet.
   termine: [
   ],

@@ -84,7 +84,7 @@
   if (CFG.soundcloud) $$('[data-sc-profil], #fuss-links a').forEach((a) => { if (a.href.includes('soundcloud')) a.href = CFG.soundcloud; });
   if (scKnopf) scKnopf.addEventListener('click', () => {
     const box = $('#sc'), karte = box.closest('.sc');
-    const url = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(CFG.soundcloud || 'https://soundcloud.com/djelix1') + '&color=%23f2541b&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false';
+    const url = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(CFG.soundcloud || 'https://soundcloud.com/kasprdj') + '&color=%23f2541b&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false';
     const f = document.createElement('iframe');
     f.src = url; f.title = 'DJ KASPR auf SoundCloud'; f.allow = 'autoplay'; f.loading = 'eager';
     box.replaceChildren(f); karte.classList.add('is-player');
