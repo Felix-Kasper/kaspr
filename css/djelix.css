@@ -122,6 +122,12 @@ html.gl .sky-0, html.gl .sky-1, html.gl .sky-3, html.gl .sky-4 { background: non
 .hero__side p { max-width: 36ch; font-weight: 500; }
 .hero__cta { flex: none; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 .hero__side .btn { flex: none; }
+.hero__knoepfe { display: flex; flex-direction: column; gap: 10px; }
+.hero__knoepfe .btn { text-align: center; }
+@media (min-width: 1001px) and (max-width: 1280px) { .hero__copy { grid-template-columns: 5fr 7fr; } }
+@media (max-width: 1000px) { .hero__knoepfe { flex-direction: row; flex-wrap: wrap; } }
+.btn--wunsch { background: var(--tinte); color: var(--papier); }
+@media (hover: hover) and (pointer: fine) { .btn--wunsch:hover { background: var(--papier); color: var(--tinte); } }
 .insta { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; text-decoration: none; padding: 4px 0; }
 .insta b { font-weight: 700; text-decoration: underline; text-decoration-thickness: 0.08em; text-underline-offset: 0.22em; }
 @media (hover: hover) and (pointer: fine) { .insta:hover b { text-decoration-thickness: 0.16em; } }

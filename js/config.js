@@ -8,5 +8,6 @@ window.DJELIX = {
   soundcloud: 'https://soundcloud.com/kasprdj',
   // Termine trägst du in JARVIS ein (DJ, Termine). Die Liste hier ist nur der Rückfall, falls JARVIS nicht antwortet.
   termine: [
+    { datum: '2026-12-18', ort: 'Sixty Twenty', stadt: 'Innsbruck' },
   ],
 };
